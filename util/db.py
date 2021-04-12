@@ -15,6 +15,7 @@ import sqlite3
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import inspect, MetaData
 
 sys.path.append('/content/drive/My Drive/DFG/util')
 
@@ -36,7 +37,9 @@ class DB:
     def __repr__(self):
         return "DB {}".format(self.engine) 
 
-    def show_all(self):
+    def display(self):
+        """displays all tables as pandas dataframes"""
+
         with self.Session.begin() as session:
             print(Applicant.__tablename__)
             display(pd.read_sql_table(Applicant.__tablename__, session.bind))
@@ -60,6 +63,12 @@ class DB:
             print("\n\n")
             print(Page_Block.__tablename__)
             display(pd.read_sql_table(Page_Block.__tablename__, session.bind))
-    
+
+    def all_dataframes(self):
+        """returns list of all tables as pandas dataframes"""
+
+        with self.Session.begin() as session:
+            return [pd.read_sql_table(Applicant.__tablename__, session.bind), pd.read_sql_table(Author.__tablename__, session.bind), pd.read_sql_table(Author_Record.__tablename__, session.bind), pd.read_sql_table(LOR_Data.__tablename__, session.bind), pd.read_sql_table(LOR_Page.__tablename__, session.bind), pd.read_sql_table(Page_Block.__tablename__, session.bind)]
+
 
 
