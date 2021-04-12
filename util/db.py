@@ -8,6 +8,7 @@ import random
 
 from datetime import datetime
 
+from IPython.display import display
 import pandas as pd
 
 import sqlite3
@@ -34,4 +35,31 @@ class DB:
         
     def __repr__(self):
         return "DB {}".format(self.engine) 
+
+    def show_all(self):
+        with self.Session.begin() as session:
+            print(Applicant.__tablename__)
+            display(pd.read_sql_table(Applicant.__tablename__, session.bind))
+
+            print("\n\n")
+            print(Author.__tablename__)
+            display(pd.read_sql_table(Author.__tablename__, session.bind))
+
+            print("\n\n")
+            print(Author_Record.__tablename__)
+            display(pd.read_sql_table(Author_Record.__tablename__, session.bind))
+
+            print("\n\n")
+            print(LOR_Data.__tablename__)
+            display(pd.read_sql_table(LOR_Data.__tablename__, session.bind))
+
+            print("\n\n")
+            print(LOR_Page.__tablename__)
+            display(pd.read_sql_table(LOR_Page.__tablename__, session.bind))
+
+            print("\n\n")
+            print(Page_Block.__tablename__)
+            display(pd.read_sql_table(Page_Block.__tablename__, session.bind))
+    
+
 
