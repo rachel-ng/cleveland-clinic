@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy import Boolean, PickleType, DateTime, Float
 from sqlalchemy.orm import relationship, backref
 
-Base = declarative_base()
+from base import Base
 
 
 class Applicant(Base):
