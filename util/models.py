@@ -45,7 +45,7 @@ class Author_Record(Base):
     year = Column(String, nullable=False)
     institution = Column(String)
     position = Column(String)
-    origin = Column(Integer)
+    origin = Column(String)
     lor_id = Column(String, ForeignKey("lor_data.id"), primary_key=True)
     author_id = Column(String, ForeignKey("author_data.name"))
 
@@ -117,4 +117,5 @@ class Page_Block(Base):
         repr_items = self.id, self.page_id, self.block_number, self.x, self.y, self.w, self.h, self.text
         repr_str = "Page_Block " + ("{} "*len(repr_items))
         return repr_str.format(*repr_items)
+
 
