@@ -34,9 +34,9 @@ def convert_pdf_png(pdf_path, applicant_id=None, dest_path=None):
         pdf_path = pdf_path.replace(" ", "\\ ")
 
         # check whether pdf has already been converted
-        if len(glob.glob(png_path.replace("%d", "*"))) == 0:
+        if len(glob.glob(png_path.replace("%d", "*"))) == 0: 
             cmd = "gs -dSAFER -r300 -sDEVICE=png16m -o {} {}    ".format(png_path, pdf_path)
-            print("png name: {}\n\npdf: {}\npng: {}\ncmd: {}\n".format(png_template, pdf_path, png_path, cmd))
+            #print("png name: {}\n\npdf: {}\npng: {}\ncmd: {}\n".format(png_template, pdf_path, png_path, cmd))
 
             subprocess.run(cmd, shell=True, stdout=True)
 
@@ -50,3 +50,4 @@ def convert_pdf_png(pdf_path, applicant_id=None, dest_path=None):
     else:
         print("no such file at {}".format(pdf_path))
         return None
+

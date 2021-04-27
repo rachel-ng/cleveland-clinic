@@ -70,7 +70,7 @@ def process_lor_to_boxes(pdf_path, png_dest_path='/content/drive/MyDrive/DFG/LOR
 
         # output
         processed_lor = {'applicant': applicant,
-                         'pdf': pdf_path, 'pngs': png_pages,
+                         'pdf': pdf_path, 'pngs': png_pages, 'png template': png_template,
                          'extracted text': extracted_text,
                          'ocr text': [[j['text'] for j in i] for i in ocr_text],
                          'ocr text full': ocr_text

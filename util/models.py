@@ -96,7 +96,7 @@ class LOR_Page(Base):
     page_blocks = relationship("Page_Block", back_populates="lor_page") 
 
     def __repr__(self):
-        repr_items = self.id, self.lor_id, self.png_path, self.page_number, self.blocks, self.form, self.rank, self.ocr_text, self.processed_text
+        repr_items = self.id, self.lor_id, self.png_path, self.page_number, self.blocks, self.form, self.rank, self.ocr_text.replace("\n"," "), self.processed_text.replace("\n"," ")
         repr_str = "LOR_Page " + ("{} "*len(repr_items))
         return repr_str.format(*repr_items)
 
@@ -115,7 +115,7 @@ class Page_Block(Base):
     lor_page = relationship("LOR_Page", back_populates="page_blocks") 
 
     def __repr__(self):
-        repr_items = self.id, self.page_id, self.block_number, self.x, self.y, self.w, self.h, self.text
+        repr_items = self.id, self.page_id, self.block_number, self.x, self.y, self.w, self.h, self.text.replace("\n"," ")
         repr_str = "Page_Block " + ("{} "*len(repr_items))
         return repr_str.format(*repr_items)
 
