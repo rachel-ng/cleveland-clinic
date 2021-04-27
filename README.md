@@ -1,2 +1,2 @@
-# cleveland-clinic-w21
+# cleveland-clinic
 NLP project for surgical residency evaluations
