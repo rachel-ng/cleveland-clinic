@@ -1,5 +1,6 @@
 import os
 import glob 
+import re
 
 from datetime import datetime
 from util import image_conversion, extract_text
@@ -24,7 +25,12 @@ def get_lor_applicant(pdf_path):
         extracted_text = extract_text.get_pdf_text(pdf_path)
 
         # get applicant info
-        line = [i.strip() for i in extracted_text[0].split("\n", 1)[0].replace(")", "(").split("(")]
+        for i in extracted_text:
+            info_line = re.search(".*\(\d{8}\).*",i)
+            if info_line:
+                info_line = info_line.group()
+        info_line = info_line if info_line else extracted_text[0].split("\n", 1)[0] 
+        line = [i.strip() for i in info_line.replace(")", "(").split("(")]
         applicant = {"name": line[0],
                      "id": line[1],
                      "author": line[2].split("-")[-1].strip()
